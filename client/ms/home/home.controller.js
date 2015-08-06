@@ -5,17 +5,8 @@
     .module('ms')
     .controller('HomeController', HomeController);
 
-  function HomeController(userService, $state) {
+  function HomeController($state) {
     var vm = this;
-
-    vm.logout = logout;
-
-    function logout() {
-      userService
-        .logout()
-        .then(function() {
-          $state.go('login');
-        });
-    }
+    
   }
 })();
