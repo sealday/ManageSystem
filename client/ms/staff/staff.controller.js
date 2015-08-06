@@ -8,5 +8,13 @@
   function StaffController() {
     var vm = this;
 
+    vm.staffs = [
+      {
+        name: 'seal',
+        bankId: '---',
+        job: '---'
+      }
+    ]
+
   }
 })();

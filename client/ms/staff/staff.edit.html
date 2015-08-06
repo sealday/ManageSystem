@@ -1,0 +1,53 @@
+<form>
+  <div>
+    <label for="name">姓名</label>
+    <input name="name" type="text" id="name" ng-model="sc.staff.name">
+  </div>
+  <div>
+    <label for="gender">性别</label>
+    <div id="gender" style="display: inline">
+      <label>男<input name="gender" type="radio" value="male" ng-model="sc.staff.gender"></label>
+      <label>女<input name="gender" type="radio" value="female" ng-model="sc.staff.gender"></label>
+    </div>
+  </div>
+  <div>
+    <label for="id">身份证号码</label>
+    <input name="id" type="text" id="id" ng-model="sc.staff.id"/>
+  </div>
+  <div>
+    <label for="education">学历</label>
+    <input name="education" type="text" id="education" ng-model="sc.staff.education"/>
+  </div>
+  <div>
+    <label for="bank-id">银行卡号</label>
+    <input name="bankId" type="text" id="bank-id" ng-model="sc.staff.bankId"/>
+  </div>
+  <div>
+    <label for="birthday">出生日期</label>
+    <input name="birthday" type="date" placeholder="yyyy-MM-dd" id="birthday" ng-model="sc.staff.birthday"/>
+  </div>
+  <div>
+    <label for="address">地址</label>
+    <input name="address" type="text" id="address" ng-model="sc.staff.address"/>
+  </div>
+  <div>
+    <label for="figure">头像</label>
+    <input name="figure" type="file" id="figure" ng-model="sc.staff.figure"/>
+  </div>
+  <div>
+    <label for="nation">民族</label>
+    <input name="nation" type="text" id="nation" ng-model="sc.staff.nation"/>
+  </div>
+  <div>
+    <label for="phone">电话号码</label>
+    <input name="phone" type="text" id="phone" ng-model="sc.staff.phone">
+  </div>
+  <div>
+    <label for="job">职位</label>
+    <input name="job" type="text" id="job" ng-model="sc.staff.job">
+  </div>
+  <div>
+    <input type="submit" value="提交">
+  </div>
+  <pre>{{sc.staff | json}}</pre>
+</form>

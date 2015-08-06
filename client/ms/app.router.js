@@ -29,6 +29,14 @@
         templateUrl: 'ms/staff/staff.html',
         controller: 'StaffController',
         controllerAs: 'sc'
-      });
+      }).state('staff.detail', {
+        url: '/:id'
+      }).state('staff.edit', {
+        url: '/:id/edit',
+        templateUrl: 'ms/staff/staff.edit.html'
+      }).state('staff.new', {
+        url: '/new',
+        templateUrl: 'ms/staff/staff.edit.html'
+      })
   }
 })();

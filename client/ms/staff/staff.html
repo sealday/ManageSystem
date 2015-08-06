@@ -1,3 +1,18 @@
-<div>
-
+<div ui-view>
+  <table>
+    <thead>
+    <tr>
+      <th>姓名</th>
+      <th>银行卡号</th>
+      <th>职位</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="staff in sc.staffs">
+      <td>{{staff.name}}</td>
+      <td>{{staff.bankId}}</td>
+      <td>{{staff.job}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
