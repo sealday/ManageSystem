@@ -1,0 +1,21 @@
+<div>
+  <h2>用户管理</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>用户名</th>
+      <th>密码</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="user in uc.users">
+      <td>{{user.username}}</td>
+      <td ng-if="!user.editing">******</td>
+      <td ng-if="user.editing"><input ng-model="user.rawPassword" type="text"></td>
+      <td ng-if="!user.editing"><a ng-click="user.editing = true" href="">修改</a></td>
+      <td ng-if="user.editing"><a ng-click="uc.save(user)" href="">保存</a><a ng-click="user.editing = false" href="">取消</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

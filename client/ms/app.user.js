@@ -3,7 +3,8 @@
 
   angular
     .module('ms')
-    .factory('userService', userService);
+    .factory('userService', userService)
+    .factory('userInterceptor', userInterceptor);
 
   function userService($window, $q, $http) {
     var service = {};
@@ -23,12 +24,11 @@
       return $q(function(resolve, reject) {
         $http
           .post('/api/login', user)
-          .then(function(data) {
+          .then(function(result) {
             // 设置token
-            $window.localStorage.setItem('token', data.token);
+            $window.localStorage.setItem('token', result.data.token);
             resolve();
-          })
-          .catch(function() {
+          }, function() {
             reject();
           });
       });
@@ -39,6 +39,29 @@
         $window.localStorage.removeItem('token');
         resolve();
       });
+    }
+  }
+
+  function userInterceptor($window, $q) {
+    return {
+      request: request,
+      responseError: responseError
+    };
+
+    function request(config) {
+      if (config.url.match(/^\/api\/.*$/) != null) {
+        config.headers['token'] = $window.localStorage.getItem('token');
+      }
+      return config;
+    }
+
+    function responseError(rejection) {
+      if (rejection.status == 403) {
+        // 非授权的行为
+        // TODO 现在出现这个情况就只要清除 token 就可以了 以后会有更复杂的情况
+        $window.localStorage.removeItem('token');
+      }
+      return $q.reject(rejection);
     }
   }
 })();

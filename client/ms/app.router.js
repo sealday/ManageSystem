@@ -37,6 +37,11 @@
       }).state('staff.new', {
         url: '/new',
         templateUrl: 'ms/staff/staff.edit.html'
+      }).state('user', {
+        url: '/user',
+        templateUrl: 'ms/user/user.html',
+        controller: 'UserController',
+        controllerAs: 'uc'
       })
   }
 })();
