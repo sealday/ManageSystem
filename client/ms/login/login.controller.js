@@ -18,6 +18,8 @@
         password: vm.password
       }).then(function() {
         $state.go('home');
+      }).catch(function() {
+        alert('帐号或者密码错误');
       });
 
       // clear password

@@ -6,7 +6,6 @@ var express = require('express'),
 
 module.exports = function(db) {
   router.post('/login', function(req, res) {
-    console.log(req.headers);
     var username = req.body.username;
     var password = req.body.password;
 
