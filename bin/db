@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+var mongodb = require('mongodb'),
+  MongoClient = mongodb.MongoClient,
+  ObjectId = mongodb.ObjectId,
+  settings = require('../settings'),
+  crypto = require('crypto');
+
+MongoClient
+  .connect(settings.mongodbUrl)
+  .then(function(db) {
+    var users = db.collection('users');
+    var _id = new ObjectId();
+    var username = 'seal';
+    var rawPassword = '..xiao';
+    var password = crypto.pbkdf2Sync(rawPassword, _id.toString(), 10000, 512, 'sha256').toString('hex');
+    users.insertOne({
+      _id: _id,
+      username: username,
+      password: password
+    }, null).then(function() {
+      console.log('init db success');
+      db.close();
+    }).catch(function(err) {
+      console.error('--- init fails ---');
+      console.error(err);
+      db.close();
+    });
+  })
+  .catch(function(err) {
+    console.error('--- connect fails ---');
+    console.error(err);
+  });
+
+
