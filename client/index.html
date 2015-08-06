@@ -6,7 +6,9 @@
 </head>
 <body>
 
-<ui-view></ui-view>
+
+<div ng-include="'ms/nav/nav.html'" ng-controller="NavController as nc" ng-show="nc.shouldShow()"></div>
+<div ui-view></div>
 
 <!-- third party libs -->
 <script src="libs/angular/angular.js"></script>
@@ -19,5 +21,6 @@
 <script src="ms/app.run.js"></script>
 <script src="ms/home/home.controller.js"></script>
 <script src="ms/login/login.controller.js"></script>
+<script src="ms/nav/nav.controller.js"></script>
 </body>
 </html>

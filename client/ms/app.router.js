@@ -18,7 +18,7 @@
         url: '/',
         templateUrl: 'ms/home/home.html',
         controller: 'HomeController',
-        controllerAs: 'hc'
+        controllerAs: 'hc',
       }).state('login', {
         url: '/login',
         templateUrl: 'ms/login/login.html',
