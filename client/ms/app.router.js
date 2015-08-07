@@ -42,6 +42,11 @@
         templateUrl: 'ms/user/user.html',
         controller: 'UserController',
         controllerAs: 'uc'
+      }).state('order', {
+        url: '/order',
+        templateUrl: 'ms/order/order.html',
+        controller: 'OrderController',
+        controllerAs: 'oc'
       })
   }
 })();

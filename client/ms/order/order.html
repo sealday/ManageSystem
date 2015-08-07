@@ -1,0 +1,27 @@
+<div>
+  <h2>订单</h2>
+
+  <h3>计划单</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>项目名称</th>
+      <th>时间</th>
+      <th>钢管总米数</th>
+      <th>扣件总米数</th>
+      <th>状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="plan in oc.plans">
+      <td>{{plan.name}}</td>
+      <td>{{plan.date | date : 'yyyy年MM月dd日'}}</td>
+      <td>{{plan.steelCount}}</td>
+      <td>{{plan.fastenerCount}}</td>
+      <td>{{plan.status}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h3>所有订单</h3>
+</div>
