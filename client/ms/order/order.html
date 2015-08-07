@@ -1,5 +1,7 @@
-<div>
+<div ui-view="">
   <h2>订单</h2>
+
+  <a href="" ng-click="oc.newOrder()">创建新订单</a>
 
   <h3>计划单</h3>
   <table>
@@ -10,6 +12,7 @@
       <th>钢管总米数</th>
       <th>扣件总米数</th>
       <th>状态</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -19,9 +22,29 @@
       <td>{{plan.steelCount}}</td>
       <td>{{plan.fastenerCount}}</td>
       <td>{{plan.status}}</td>
+      <td><button ng-if="plan.status == '申请中'" ng-click="oc.read(plan)">已经阅读</button></td>
     </tr>
     </tbody>
   </table>
 
   <h3>所有订单</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>始发地</th>
+      <th>目的地</th>
+      <th>发车日期</th>
+      <th>经手人</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="order in oc.orders">
+      <td>{{order.from}}</td>
+      <td>{{order.to}}</td>
+      <td>{{order.date | date : 'yyyy年MM月dd日 H时mm分'}}</td>
+      <td>{{order.handler}}</td>
+    </tr>
+    </tbody>
+  </table>
+
 </div>

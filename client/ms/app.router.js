@@ -47,6 +47,11 @@
         templateUrl: 'ms/order/order.html',
         controller: 'OrderController',
         controllerAs: 'oc'
-      })
+      }).state('order.new', {
+        url: '/new',
+        templateUrl: 'ms/order/order.edit.html',
+        controller: 'OrderEditController',
+        controllerAs: 'oec'
+      });
   }
 })();

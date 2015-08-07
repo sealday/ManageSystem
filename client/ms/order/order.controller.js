@@ -5,9 +5,11 @@
     .module('ms')
     .controller('OrderController', OrderController);
 
-  function OrderController() {
+  function OrderController($state) {
     var vm = this;
 
+    vm.read = read;
+    vm.newOrder = newOrder;
     vm.plans = [
       {
         name: '莱芜工地第八项目部',
@@ -38,6 +40,35 @@
         status: '已发货'
       }
     ];
+
+    vm.orders = [
+      {
+        from: '上海',
+        to: '南京 ',
+        date: new Date(),
+        handler: '张琳'
+      },
+      {
+        from: '上海',
+        to: '南京 ',
+        date: new Date(),
+        handler: '张琳'
+      },
+      {
+        from: '上海',
+        to: '南京 ',
+        date: new Date(),
+        handler: '张琳'
+      }
+    ];
+
+    function read(plan) {
+      plan.status = '已阅读';
+    }
+
+    function newOrder() {
+      $state.go('order.new');
+    }
 
   }
 })();
