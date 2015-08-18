@@ -1,7 +1,7 @@
 <div>
   <h2>新建订单</h2>
 
-  <form>
+  <form action="">
     <div>
       <label>始发地</label>
       <input ng-model="oec.order.from">
@@ -21,49 +21,24 @@
     <div>
       <input type="submit" value="保存">
     </div>
-
-    <div>
-      <label>
-        <input type="checkbox" ng-model="oec.order.pipe"> 钢管
-      </label>
-      <label>
-        <input type="checkbox" ng-model="oec.order.fastener"> 扣件
-      </label>
+    <div ng-repeat="product in oec.allProducts" style="display: inline-block;">
+      <label><input ng-model="oec.products[product.name].includes" ng-change="oec.initProduct(product.name)" type="checkbox">{{product.name}}</label>
     </div>
-    <div ng-if="oec.order.pipe">
-      <h4>钢管</h4>
-      <a href="" ng-click="oec.add(oec.order.pipes)">+</a>
-      <div ng-repeat="pipe in oec.order.pipes">
-        <label>规格<input ng-model="pipe.spec"></label>
-        <label>根数<input ng-model="pipe.number"></label>
-        <a href="" ng-click="oec.remove(oec.order.pipes, pipe)">-</a>
-      </div>
-      多少米一顿<input ng-model="per">
-      <p>总米数 {{oec.total(oec.order.pipes)}}</p>
-      <p>总吨数 {{oec.total(oec.order.pipes)  / per}}</p>
-    
-    </div>
-
-    <div ng-if="oec.order.fastener">
-      <h4>扣件</h4>
-      <a href="" ng-click="oec.add(oec.order.fasteners)">+</a>
-      <div ng-repeat="fastener in oec.order.fasteners">
-        <label>规格
-          <select ng-model="fastener.spec">
-            <option>十字</option>
-            <option>直接</option>
-            <option>转向</option>
+    <div ng-repeat="(productName, product) in oec.products">
+      <fieldset ng-if="product.includes">
+        <legend>{{productName}}</legend>
+        <a href="" ng-click="oec.add(product)">增加</a>
+        <div ng-repeat="item in product.items">
+          <label>规格<input ng-model="item.spec"></label>
+          <select ng-model="item.spec" ng-options="spec for spec in oec.specs(productName)">
+            <option value="">请选择</option>
           </select>
-        </label>
-        <label>个数<input ng-model="fastener.number"></label>
-        <a href="" ng-click="oec.remove(oec.order.fasteners, fastener)">-</a>
-      </div>
-      <div>数量 {{ oec.total(oec.order.fasteners)}}</div>
+          <label>数量<input ng-model="item.number" ng-keyup="oec.onKeyup($event, product)">{{oec.unit(productName)}}</label>
+          <a href="" ng-click="oec.remove(items, item)">删除</a>
+        </div>
+        <p><strong>总数量</strong>{{oec.total(product.items, productName)}} {{oec.unit(productName)}} </p>
+      </fieldset>
     </div>
-
-    <div>
-    <pre>{{oec.order | json}}</pre>
-    </div>
-
+    <p>{{oec.weight()}}</p>
   </form>
 </div>

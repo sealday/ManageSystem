@@ -5,22 +5,24 @@
     .module('ms')
     .controller('OrderEditController', OrderEditController);
 
-  function OrderEditController() {
+  function OrderEditController(orderSerivce, $scope) {
     var vm = this;
-
-    vm.order = {};
+    vm.allProducts = orderSerivce.allProducts;
+    vm.products = {};
     vm.total = total;
-    vm.order.pipes = [{
-      spec: 1.1,
-      number: 100
-    }];
-    vm.order.fasteners = [];
-
     vm.add = add;
     vm.remove = remove;
+    vm.unit = unit;
+    vm.specs = specs;
+    vm.weight = weight;
+    vm.initProduct = initProduct;
+    vm.onKeyup = onKeyup;
 
-    function add(products) {
-      products.push({});
+    function add(product) {
+      if (product.items === undefined) {
+        product.items = [];
+      }
+      product.items.push({});
     }
 
     function remove(products, product) {
@@ -31,15 +33,51 @@
       });
     }
 
-    function total(items) {
+    function total(items, productName) {
       var count = 0;;
+      var type = orderSerivce.allProductsTable[productName].type;
+      var fixed = 0;
       items.forEach(function(i) {
         var spec = parseFloat(i.spec);
-        spec = isNaN(spec) ? 1 : spec;
+        if (type == 'a') {
+          fixed = 1;
+        } else if (type == 'b') {
+          spec = 1;
+          fixed = 0;
+        }
         count += i.number * spec;
       });
 
-      return count;
+      return count.toFixed(fixed);
+    }
+
+    function unit(productName) {
+      return orderSerivce.allProductsTable[productName].unit;
+    }
+
+    function specs(productName) {
+      return orderSerivce.allProductsTable[productName].specs;
+    }
+
+    function weight() {
+      var w = 0;
+      angular.forEach(vm.products, function(product, productName) {
+        if (!product.includes) return;
+        w += vm.total(product.items, productName) / 3000;
+      });
+      return w.toFixed(2);
+    }
+
+    function initProduct(productName) {
+      vm.products[productName].items = [];
+    }
+
+    function onKeyup(e, product) {
+      e.preventDefault();
+      if (e.keyCode == 13) {
+        // 如果能够自动跳转到下一个输入框就好了
+        vm.add(product);
+      }
     }
   }
 })();
