@@ -70,5 +70,8 @@
       $state.go('order.new');
     }
 
+    function newPlanOrder() {
+      $state.go('order.plan');
+    }
   }
 })();
