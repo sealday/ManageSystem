@@ -5,17 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ManageSystem</title>
-  <style>
-    a {
-      text-decoration: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-
-<div ng-include="'ms/nav/nav.html'" ng-controller="NavController as nc" ng-show="nc.shouldShow()"></div>
-<div ui-view></div>
+  <div class="container">
+    <div ng-include="'ms/nav/nav.html'" ng-controller="NavController as nc" ng-show="nc.shouldShow()"></div>
+    <div ui-view></div>
+  </div>
 
 <!-- third party libs -->
 <script src="libs/angular/angular.js"></script>
