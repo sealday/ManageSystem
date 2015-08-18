@@ -38,6 +38,10 @@
         <label>根数<input ng-model="pipe.number"></label>
         <a href="" ng-click="oec.remove(oec.order.pipes, pipe)">-</a>
       </div>
+      多少米一顿<input ng-model="per">
+      <p>总米数 {{oec.total(oec.order.pipes)}}</p>
+      <p>总吨数 {{oec.total(oec.order.pipes)  / per}}</p>
+    
     </div>
 
     <div ng-if="oec.order.fastener">
@@ -54,6 +58,7 @@
         <label>个数<input ng-model="fastener.number"></label>
         <a href="" ng-click="oec.remove(oec.order.fasteners, fastener)">-</a>
       </div>
+      <div>数量 {{ oec.total(oec.order.fasteners)}}</div>
     </div>
 
     <div>

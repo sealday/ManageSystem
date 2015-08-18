@@ -9,6 +9,7 @@
     var vm = this;
 
     vm.order = {};
+    vm.total = total;
     vm.order.pipes = [{
       spec: 1.1,
       number: 100
@@ -28,6 +29,17 @@
           array.splice(index, 1);
         }
       });
+    }
+
+    function total(items) {
+      var count = 0;;
+      items.forEach(function(i) {
+        var spec = parseFloat(i.spec);
+        spec = isNaN(spec) ? 1 : spec;
+        count += i.number * spec;
+      });
+
+      return count;
     }
   }
 })();
