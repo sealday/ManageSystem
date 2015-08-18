@@ -18,6 +18,9 @@
       <label>经手人</label>
       <input ng-model="oec.order.handler">
     </div>
+    <fieldset>
+      <legend>司机信息</legend>
+    </fieldset>
     <div>
       <input type="submit" value="保存">
     </div>
@@ -29,10 +32,11 @@
         <legend>{{productName}}</legend>
         <a href="" ng-click="oec.add(product)">增加</a>
         <div ng-repeat="item in product.items">
-          <label>规格<input ng-model="item.spec"></label>
+          <label>规格<input ng-model="item.spec" focus-me focus-next>
           <select ng-model="item.spec" ng-options="spec for spec in oec.specs(productName)">
             <option value="">请选择</option>
           </select>
+          </label>
           <label>数量<input ng-model="item.number" ng-keyup="oec.onKeyup($event, product)">{{oec.unit(productName)}}</label>
           <a href="" ng-click="oec.remove(items, item)">删除</a>
         </div>
