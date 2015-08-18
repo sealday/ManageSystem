@@ -57,7 +57,7 @@
           </select>
           </label>
           <label>数量<input ng-model="item.number" ng-keyup="oec.onKeyup($event, product)">{{oec.unit(productName)}}</label>
-          <a href="" ng-click="oec.remove(items, item)">删除</a>
+          <a href="" ng-click="oec.remove(product.items, item)">删除</a>
         </div>
         <p><strong>总数量</strong>{{oec.total(product.items, productName)}} {{oec.unit(productName)}} </p>
       </fieldset>

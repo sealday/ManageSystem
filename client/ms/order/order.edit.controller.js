@@ -24,8 +24,8 @@
       product.items.push({});
     }
 
-    function remove(products, product) {
-      products.forEach(function(currentValue, index, array) {
+    function remove(items, product) {
+      items.forEach(function(currentValue, index, array) {
         if (currentValue == product) {
           array.splice(index, 1);
         }
