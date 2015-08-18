@@ -19,6 +19,7 @@
       <th>用户名</th>
       <th>密码</th>
       <th></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
       <td ng-if="user.editing"><input ng-model="user.rawPassword" type="text"></td>
       <td ng-if="!user.editing"><a ng-click="user.editing = true" href="">修改</a></td>
       <td ng-if="user.editing"><a ng-click="uc.save(user)" href="">保存</a><a ng-click="user.editing = false" href="">取消</a></td>
+      <td><a href="">冻结</a></td>
     </tr>
     </tbody>
   </table>
