@@ -2,28 +2,47 @@
   <h2>新建订单</h2>
 
   <form action="">
-    <div>
-      <label>始发地</label>
-      <input ng-model="oec.order.from">
-    </div>
-    <div>
-      <label>目的地</label>
-      <input ng-model="oec.order.to">
-    </div>
-    <div>
-      <label>签单时间</label>
-      <input ng-model="oec.order.date" type="date">
-    </div>
-    <div>
-      <label>经手人</label>
-      <input ng-model="oec.order.handler">
-    </div>
+    <fieldset>
+      <legend>订单信息</legend>
+      <div>
+        <label>始发地</label>
+        <input ng-model="oec.order.from">
+      </div>
+      <div>
+        <label>目的地</label>
+        <input ng-model="oec.order.to">
+      </div>
+      <div>
+        <label>签单时间</label>
+        <input ng-model="oec.order.date" type="date">
+      </div>
+      <div>
+        <label>经手人</label>
+        <input ng-model="oec.order.handler">
+      </div>
+      <div>
+        <label>单价</label>
+        <input ng-model="oec.order.price" type="text">
+      </div>
+    </fieldset>
     <fieldset>
       <legend>司机信息</legend>
+      <div>
+        <label>车牌号：<input type="text" ng-model="oec.driver.carNumber"></label>
+      </div>
+      <div>
+        <label>姓名：<input type="text" ng-model="oec.driver.name"></label>
+      </div>
+      <div>
+        <label>联系方式：<input type="text" ng-model="oec.driver.phone"></label>
+      </div>
+      <div>
+        <label>付款卡号：<input type="text" ng-model="oec.driver.bankNumber"></label>
+      </div>
+      <div>
+        <label>开户银行：<input type="text" ng-model="oec.driver.bankName"></label>
+      </div>
     </fieldset>
-    <div>
-      <input type="submit" value="保存">
-    </div>
     <div ng-repeat="product in oec.allProducts" style="display: inline-block;">
       <label><input ng-model="oec.products[product.name].includes" ng-change="oec.initProduct(product.name)" type="checkbox">{{product.name}}</label>
     </div>
@@ -43,6 +62,10 @@
         <p><strong>总数量</strong>{{oec.total(product.items, productName)}} {{oec.unit(productName)}} </p>
       </fieldset>
     </div>
-    <p>{{oec.weight()}}</p>
+    <p><strong>吨位：</strong>{{oec.weight()}}</p>
+    <p><strong>运费：</strong>{{oec.weight() * oec.order.price | currency : '¥' }}</p>
+    <div>
+      <input type="submit" value="保存">
+    </div>
   </form>
 </div>

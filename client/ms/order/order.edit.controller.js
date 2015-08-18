@@ -8,7 +8,6 @@
   function OrderEditController(orderSerivce, $scope) {
     var vm = this;
     vm.allProducts = orderSerivce.allProducts;
-    vm.products = {};
     vm.total = total;
     vm.add = add;
     vm.remove = remove;
@@ -17,11 +16,11 @@
     vm.weight = weight;
     vm.initProduct = initProduct;
     vm.onKeyup = onKeyup;
+    vm.init = init;
+
+    vm.init();
 
     function add(product) {
-      if (product.items === undefined) {
-        product.items = [];
-      }
       product.items.push({});
     }
 
@@ -70,14 +69,23 @@
 
     function initProduct(productName) {
       vm.products[productName].items = [];
+      // 它会聚焦，这样的话，不方便连续操作
+      // 所以暂时注释掉
+      // vm.add(vm.products[productName]);
     }
 
     function onKeyup(e, product) {
       e.preventDefault();
       if (e.keyCode == 13) {
-        // 如果能够自动跳转到下一个输入框就好了
         vm.add(product);
       }
+    }
+
+    function init() {
+      vm.order = {};
+      vm.driver = {};
+      vm.products = {};
+      vm.order.price = 0;
     }
   }
 })();
