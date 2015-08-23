@@ -4,7 +4,8 @@ var express = require('express'),
   ObjectId = mongodb.ObjectId,
   router = express.Router(),
   auth = require('./auth'),
-  user = require('./user');
+  user = require('./user'),
+  order = require('./order');
 
 module.exports = function(db) {
   router.post('/login', auth.login(db));
@@ -14,6 +15,8 @@ module.exports = function(db) {
 
   router.get('/users', user.getUsers(db));
   router.put('/users/:id', user.updateUser(db));
+
+  router.get('/orders', order.getOrders(db));
 
   return router;
 };
