@@ -16,6 +16,32 @@ module.exports.getUsers = function(db) {
   };
 };
 
+module.exports.addUser = function(db) {
+  return function(req, res, next) {
+    var users = db.collection('users');
+    var username = req.body.username || '';
+    var rawPassword = req.body.password || ''; 
+    var _id = new ObjectId();
+    var password = crypto.pbkdf2Sync(rawPassword, _id.toString(), 10000, 512, 'sha256').toString('hex');
+    users
+      .insertOne({
+        _id: _id,
+        username: username,
+        password: password
+      }, function(err, result) {
+        if (err) {
+          // 用户名重复了
+          if (err.code === 11000) {
+            return res.status(400).end();
+          } else {
+            return next(err);
+          }
+        }
+        res.end();
+      });
+  };
+};
+
 module.exports.updateUser = function(db) {
   return function(req, res, next) {
     var users = db.collection('users');

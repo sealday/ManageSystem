@@ -20,7 +20,7 @@ module.exports = function() {
       });
 
       // token 唯一
-      users.createIndex({token: 1}, {unique: true}, function(err) {
+      users.createIndex({token: 1}, {unique: true, sparse: true}, function(err) {
         if (err) {
           return reject(err);
         }

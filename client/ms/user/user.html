@@ -1,13 +1,13 @@
 <div>
   <h2>用户管理</h2>
-  <form>
+  <form ng-submit="uc.addUser()">
     <div>
       <label>用户名：</label>
-      <input type="text">
+      <input type="text" ng-model="uc.newUser.username">
     </div>
     <div>
       <label>密码：</label>
-      <input type="password">
+      <input type="password" ng-model="uc.newUser.password">
     </div>
     <div>
       <input type="submit" value="新建">

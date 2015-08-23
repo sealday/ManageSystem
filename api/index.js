@@ -14,6 +14,7 @@ module.exports = function(db) {
   router.use(auth.middleware(db));
 
   router.get('/users', user.getUsers(db));
+  router.post('/users', user.addUser(db));
   router.put('/users/:id', user.updateUser(db));
 
   router.get('/orders', order.getOrders(db));
